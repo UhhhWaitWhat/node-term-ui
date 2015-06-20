@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "outDir": "lib",
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "inlineSourceMap": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "filesGlob": [
+        "./src/term-ui.ts",
+        "./defs/**/*.d.ts"
+    ],
+    "files": [
+        "./src/term-ui.ts",
+        "./defs/ansi-styles.d.ts",
+        "./defs/node.d.ts",
+        "./defs/node.es6.d.ts",
+        "./defs/strip-ansi.d.ts",
+        "./defs/terminal-kit.d.ts"
+    ]
+}

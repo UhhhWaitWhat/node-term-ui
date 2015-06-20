@@ -1,0 +1,29 @@
+{
+  "name": "term-ui",
+  "version": "0.0.1",
+  "main": "lib/term-ui.js",
+  "description": "Create terminal UIs with ease",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PaulAvery/node-term-ui.git"
+  },
+  "devDependencies": {
+    "dts-generator": "^1.4.1",
+    "typedoc": "^0.3.4",
+    "typescript": "^1.5.0-beta",
+    "version-bump": "^0.1.0"
+  },
+  "dependencies": {
+    "ansi-styles": "^2.0.1",
+    "strip-ansi": "^2.0.1",
+    "terminal-kit": "^0.12.6"
+  },
+  "scripts": {
+    "prepublish": "make"
+  },
+  "typescript": {
+      "definition": "lib/term-ui.d.ts"
+  },
+  "author": "Florian Albertz",
+  "license": "BSD-3-Clause"
+}
