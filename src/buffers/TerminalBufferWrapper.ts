@@ -24,22 +24,6 @@ export default class TerminalBufferWrapper implements TerminalBuffer {
 		this.parent.width = width;
 	}
 
-	get maxX() {
-		return this.parent.maxX;
-	}
-
-	get maxY() {
-		return this.parent.maxY;
-	}
-
-	get minX() {
-		return this.parent.minX;
-	}
-
-	get minY() {
-		return this.parent.minY;
-	}
-
 	get(x: number, y: number) {
 		return this.parent.get(x, y);
 	}
@@ -54,5 +38,9 @@ export default class TerminalBufferWrapper implements TerminalBuffer {
 
 	clear() {
 		this.parent.clear();
+	}
+
+	writeBuffer(offsetX: number, offsetY: number, buffer: TerminalBuffer) {
+		this.parent.writeBuffer(offsetX, offsetY, buffer);
 	}
 }

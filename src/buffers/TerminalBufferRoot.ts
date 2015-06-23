@@ -7,10 +7,6 @@ import TerminalBuffer from './TerminalBuffer';
  * Stores data internally and safeguards against out-of-bounds access
  */
 export default class TerminalBufferRoot implements TerminalBuffer {
-	public maxX: number = -1;
-	public maxY: number = -1;
-	public minX: number;
-	public minY: number;
 	private data: Array<Array<string>>;
 
 	constructor({width, height}: {width?: number, height?: number} = {}) {
@@ -18,8 +14,6 @@ export default class TerminalBufferRoot implements TerminalBuffer {
 
 		this.width = width || 0;
 		this.height = height || 0;
-		this.minX = this.width;
-		this.minY = this.height;
 	}
 
 	/** Handle Adjusting width and height properly, so our array is always the absolute source of truth */
@@ -39,9 +33,6 @@ export default class TerminalBufferRoot implements TerminalBuffer {
 				this.data.push(new Array(this.height));
 			}
 		}
-
-		if(this.maxX >= this.width) this.maxX = this.width - 1;
-		if(this.maxY >= this.height) this.maxY = this.height;
 	}
 
 	get height() {
@@ -62,9 +53,6 @@ export default class TerminalBufferRoot implements TerminalBuffer {
 				this.data[x].length = next;
 			}
 		}
-
-		if(this.maxY >= this.height) this.maxY = this.height - 1;
-		if(this.minY >= this.height) this.minY = this.height;
 	}
 
 	clear() {
@@ -85,10 +73,6 @@ export default class TerminalBufferRoot implements TerminalBuffer {
 		let closers = styles.reverse().map((style) => ansi[style] ? ansi[style].close : '').join('');
 
 		this.data[x][y] = openers + char + closers;
-		this.maxX = Math.max(x, this.maxX);
-		this.maxY = Math.max(y, this.maxY);
-		this.minX = Math.min(x, this.minX);
-		this.minY = Math.min(y, this.minY);
 
 		/* Reverse call modifies array in-place -.- */
 		styles.reverse();
@@ -112,5 +96,13 @@ export default class TerminalBufferRoot implements TerminalBuffer {
 
 			this.put(x++, y, char, styles);
 		});
+	}
+
+	writeBuffer(offsetX: number, offsetY: number, buffer: TerminalBuffer) {
+		for(let y = 0; y < this.width; y++) {
+			for(let x = 0; x < this.width; x++) {
+				this.put(x + offsetX, y + offsetY, buffer.get(x, y));
+			}
+		}
 	}
 }

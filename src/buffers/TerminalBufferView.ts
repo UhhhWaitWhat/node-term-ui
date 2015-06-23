@@ -8,10 +8,6 @@ import TerminalBuffer from './TerminalBuffer';
 export default class TerminalBufferView implements TerminalBuffer {
 	public width: number;
 	public height: number;
-	public maxX: number = -1;
-	public maxY: number = -1;
-	public minX: number;
-	public minY: number;
 	private x: number;
 	private y: number;
 
@@ -20,8 +16,6 @@ export default class TerminalBufferView implements TerminalBuffer {
 		this.y = y;
 		this.width = width || parent.width - x;
 		this.height = height || parent.height - y;
-		this.minX = this.width;
-		this.minY = this.height;
 	}
 
 	clear() {
@@ -39,10 +33,6 @@ export default class TerminalBufferView implements TerminalBuffer {
 		}
 
 		this.parent.put(this.x + x, this.y + y, char, styles);
-		this.maxX = Math.max(x, this.maxX);
-		this.maxY = Math.max(y, this.maxY);
-		this.minX = Math.min(x, this.minX);
-		this.minY = Math.min(y, this.minY);
 	}
 
 	get(x: number, y: number) {
@@ -64,5 +54,13 @@ export default class TerminalBufferView implements TerminalBuffer {
 				x = 0;
 			}
 		});
+	}
+
+	writeBuffer(offsetX: number, offsetY: number, buffer: TerminalBuffer) {
+		for(let y = 0; y < this.width; y++) {
+			for(let x = 0; x < this.width; x++) {
+				this.put(x + offsetX, y + offsetY, buffer.get(x, y));
+			}
+		}
 	}
 }

@@ -17,15 +17,6 @@ b.height: number
 The height and the width of the Buffer. Useful for calculating sizes relative to the buffer. Setting these values should resize the buffer.
 
 ```ts
-b.maxX: number
-b.maxY: number
-b.minX: number
-b.minY: number
-```
-The maximum coordinates this buffer has been written to. This is useful to e.g. shrink a parent element accordingly.
-Max values default to -1, min values default to width and height respectively
-
-```ts
 b.clear(): void
 ```
 Writes spaces into the entire buffer. Useful to fill a background.

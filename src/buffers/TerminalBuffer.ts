@@ -7,16 +7,6 @@ interface TerminalBuffer {
 	width: number;
 	height: number;
 
-	/**
-	 * Maximum coordinates this buffer has been written to
-	 * Useful to gauge how tall a previously rendered element was
-	 * Max values default to -1, min values default to width and height respectively
-	 */
-	maxX: number;
-	maxY: number;
-	minX: number;
-	minY: number;
-
 	/** Clear the entire buffer */
 	clear(): void;
 
@@ -39,6 +29,11 @@ interface TerminalBuffer {
 	 * Styles work identical to put()
 	 */
 	write(x: number, y: number, text: string, styles?: Array<string>): void;
+
+	/**
+	 * Copy an entire buffer into this one at an offset
+	 */
+	writeBuffer(x: number, y: number, buffer: TerminalBuffer): void;
 }
 
 export default TerminalBuffer;
