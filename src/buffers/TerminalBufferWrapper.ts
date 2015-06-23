@@ -1,5 +1,4 @@
 import TerminalBuffer from './TerminalBuffer';
-import TerminalBufferView from './TerminalBufferView';
 
 /**
  * A base class to wrap a buffer.

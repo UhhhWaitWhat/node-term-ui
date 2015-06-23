@@ -9,11 +9,10 @@ import {EventEmitter} from 'events';
  * The parent then figures out, which element should actually receive focus and calls the corresponding methods on its children.
  */
 export default class Element extends EventEmitter {
-	private manualFocussable: boolean = false;
-
-	/** Override these, to use our keys to shift focus */
+	/* Override these, to use our keys to shift focus */
 	static nextFocus: string = 'TAB';
 	static previousFocus: string = 'SHIFT_TAB';
+
 
 	/**
 	 * The currently focussed descendant.
@@ -25,12 +24,14 @@ export default class Element extends EventEmitter {
 	/** Is the element hidden? */
 	public hidden: boolean = false;
 
+	private manualFocussable: boolean = false;
+
 	constructor() {
 		super();
 
 		/* Emit the corresponding focus event if we receive an input */
-		this.on(Element.nextFocus, () => {if(!this.locked) this.emit('focus-next')});
-		this.on(Element.previousFocus, () => {if(!this.locked) this.emit('focus-previous')});
+		this.on(Element.nextFocus, () => { if(!this.locked) this.emit('focus-next'); });
+		this.on(Element.previousFocus, () => { if(!this.locked) this.emit('focus-previous'); });
 
 		/* Reemit key events on their own  */
 		this.on('key', (key: string) => this.emit(key));
@@ -50,7 +51,9 @@ export default class Element extends EventEmitter {
 	 * The passed buffer already has dimensions assigned to it.
 	 * Should be implemented by extending class
 	 */
-	render(buffer: TerminalBuffer) {}
+	render(buffer: TerminalBuffer) {
+		/* yes, this comment is here, to make tslint happy */
+	}
 
 	/**
 	 * We received focus from somewhere

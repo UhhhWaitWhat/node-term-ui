@@ -1,5 +1,4 @@
 import Element from './Element';
-import {EventEmitter} from 'events';
 
 /**
  * A base class to work with collections of elements
@@ -33,7 +32,7 @@ export default class MultiWrapper extends Element {
 			});
 
 			/* Handle focussing */
-			child.on('blur', () => this.blurChild(child))
+			child.on('blur', () => this.blurChild(child));
 			child.on('focus', () => this.focusChild(child));
 			child.on('focus-next', () => this.focusNext());
 			child.on('focus-previous', () => this.focusPrevious());
@@ -99,9 +98,9 @@ export default class MultiWrapper extends Element {
 	}
 
 	/**
-	* Focus the previous focussable child
-	* If none is available, either loop around or focus our previous sibling, depending on our lock status.
-	*/
+	 * Focus the previous focussable child
+	 * If none is available, either loop around or focus our previous sibling, depending on our lock status.
+	 */
 	focusPrevious() {
 		if(!this.focussable && this.locked) throw new Error('No focussable elements');
 		let position = this.children.indexOf(this.focussedChild) - 1;
@@ -130,7 +129,7 @@ export default class MultiWrapper extends Element {
 		if(this.focussedChild !== child) {
 			this.blur();
 			this.focussedChild = child;
-		};
+		}
 
 		this.focussedChild.focus();
 		this.emit('focus');

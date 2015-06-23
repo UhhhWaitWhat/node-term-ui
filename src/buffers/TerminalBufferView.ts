@@ -6,16 +6,16 @@ import TerminalBuffer from './TerminalBuffer';
  * Writes and reads at an offset to the parent buffer
  */
 export default class TerminalBufferView implements TerminalBuffer {
-	private x: number;
-	private y: number;
 	public width: number;
 	public height: number;
 	public maxX: number = -1;
 	public maxY: number = -1;
 	public minX: number;
 	public minY: number;
+	private x: number;
+	private y: number;
 
-	constructor(private parent: TerminalBuffer,	{x = 0, y = 0, width, height}: {x?: number, y?: number, width?: number, height?: number} = {}, private overflow:boolean = true) {
+	constructor(private parent: TerminalBuffer,	{x = 0, y = 0, width, height}: {x?: number, y?: number, width?: number, height?: number} = {}, private overflow: boolean = true) {
 		this.x = x;
 		this.y = y;
 		this.width = width || parent.width - x;

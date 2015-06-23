@@ -75,7 +75,6 @@ export default class Terminal extends EventEmitter {
 		buffer.width = this.width;
 		buffer.height = this.height;
 
-		let a = 0;
 		for(let y = 0; y < this.height; y++) {
 			for(let x = 0; x < this.width; x++) {
 				if(this.buffer.get(x, y) !== buffer.get(x, y)) {

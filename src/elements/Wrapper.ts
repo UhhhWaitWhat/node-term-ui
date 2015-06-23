@@ -1,6 +1,5 @@
 import Element from './Element';
 import TerminalBuffer from '../buffers/TerminalBuffer';
-import {EventEmitter} from 'events';
 
 /**
  * A simple base class, to extend another element (add a border, position an element etc.)

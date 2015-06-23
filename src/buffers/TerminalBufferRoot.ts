@@ -1,18 +1,17 @@
 import strip = require('strip-ansi');
 import ansi = require('ansi-styles');
 import TerminalBuffer from './TerminalBuffer';
-import TerminalBufferView from './TerminalBufferView';
 
 /**
  * A top-level TerminalBuffer
  * Stores data internally and safeguards against out-of-bounds access
  */
 export default class TerminalBufferRoot implements TerminalBuffer {
-	private data: Array<Array<string>>;
 	public maxX: number = -1;
 	public maxY: number = -1;
 	public minX: number;
 	public minY: number;
+	private data: Array<Array<string>>;
 
 	constructor({width, height}: {width?: number, height?: number} = {}) {
 		this.data = [];
