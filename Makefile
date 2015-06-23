@@ -1,3 +1,4 @@
+SRC = $(wildcard src/**/*.ts)
 BIN = ./node_modules/.bin
 
 build:
@@ -6,6 +7,9 @@ build:
 
 clean:
 	@rm -rf lib
+
+lint:
+	@$(BIN)/tslint -t verbose $(foreach source,$(SRC), -f $(source))
 
 docs:
 	#@$(BIN)/typedoc --out typedoc defs src/term-ui.ts --module commonjs --target ES5

@@ -8,7 +8,8 @@
     "url": "https://github.com/PaulAvery/node-term-ui.git"
   },
   "devDependencies": {
-    "dts-generator": "^1.4.1",
+    "dts-generator": "^1.5.0",
+    "tslint": "^2.3.0-beta",
     "typedoc": "^0.3.4",
     "typescript": "^1.5.0-beta",
     "version-bump": "^0.1.0"
@@ -19,10 +20,10 @@
     "terminal-kit": "^0.12.6"
   },
   "scripts": {
-    "prepublish": "make"
+    "prepublish": "make lint && make"
   },
   "typescript": {
-      "definition": "lib/term-ui.d.ts"
+    "definition": "lib/term-ui.d.ts"
   },
   "author": "Florian Albertz",
   "license": "BSD-3-Clause"
